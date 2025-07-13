@@ -1,18 +1,28 @@
-import { useState } from "react";
+/* 
+    The date picker component alows the users to chose a date and add a meal.
+    This data will affect the content of the macros page.
+*/
+import { useEffect, useState } from "react";
 
 type DatePickerProps = {
-  onCalendarClick?: () => void;
-  onAddClick?: () => void;
+  onCalendarClick: () => void;
+  onAddClick: () => void;
+  onDateUpdate: (newDate:Date) => void;
 };
 
-function DatePicker({onCalendarClick, onAddClick}: DatePickerProps) {
+function DatePicker({onCalendarClick, onAddClick, onDateUpdate}: DatePickerProps) {
     const [currentDate, setCurrentDate] = useState(new Date());
+
+    useEffect(() => {
+        onDateUpdate(currentDate);
+    }, [currentDate])
 
     const updateDateByDays = (days:number) => {
         const newDate = new Date(currentDate);
         newDate.setDate(currentDate.getDate() + days);
         setCurrentDate(newDate);
     }
+    
 
     return <div className="w-full bg-green-500 grid grid-cols-12 text-white font-bold text-3xl pb-2 pt-3">
         <div className="col-span-2 text-center">
