@@ -7,3 +7,12 @@ export type Meal = {
     carbs:number;
     fat:number;
 }
+
+export type GoalType = 'protein' | 'calories' | 'fat' | 'carbs';
+export type GoalComparator = 'above' | 'under';
+
+export type Goal = {
+    type: GoalType;
+    comparator: GoalComparator;
+    target: number;
+};
