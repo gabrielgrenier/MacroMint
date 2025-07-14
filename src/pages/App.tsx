@@ -40,15 +40,15 @@ function App() {
     <div className="px-5 py-3">
         {selectedTab === 'macros' && <MacrosPage currentDate={currentDate} meals={meals} goals={goals}/>}
 
-        {selectedTab === 'meals' &&<div className='bg-white shadow-2xl rounded-3xl px-4 py-2'>
+        {selectedTab === 'meals' &&<div className='bg-white shadow-sm rounded-3xl px-4 py-2'>
           Meals page (not yet implemented)
         </div>}
 
-        {selectedTab === 'me' &&<div className='bg-white shadow-2xl rounded-3xl px-4 py-2'>
+        {selectedTab === 'me' &&<div className='bg-white shadow-sm rounded-3xl px-4 py-2'>
           Account page (not yet implemented)
         </div>}
 
-        {selectedTab === 'workout' &&<div className='bg-white shadow-2xl rounded-3xl px-4 py-2'>
+        {selectedTab === 'workout' &&<div className='bg-white shadow-sm rounded-3xl px-4 py-2'>
           Workout page (not yet implemented)
         </div>}
 

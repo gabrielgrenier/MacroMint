@@ -13,3 +13,11 @@ body {
 .material-symbols-outlined {
   font-size: inherit!important;
 }
+
+.recharts-pie * {
+  outline: none !important;
+}
+
+svg {
+  outline: none!important;
+}
