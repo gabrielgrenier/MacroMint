@@ -10,7 +10,7 @@ function FooterMenu({selectedTab, onTabChange}: FooterMenProps) {
         tabName === selectedTab ?
             "text-green-500 font-semibold" : "text-gray-500"; 
 
-    return <div className="fixed bottom-0 left-0 right-0 bg-white border-t py-2 border-gray-300">
+    return <div className="fixed bottom-0 left-0 right-0 bg-white border-t py-2 border-gray-300 hover:cursor-pointer">
         <div className="grid grid-cols-4 text-center">
             <div className={selectedClass('macros')} onClick={() => onTabChange('macros')}>
                 <div className="text-2xl leading-none transition duration-300">

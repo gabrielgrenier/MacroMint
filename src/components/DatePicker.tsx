@@ -26,14 +26,14 @@ function DatePicker({onCalendarClick, onAddClick, onDateUpdate}: DatePickerProps
 
     return <div className="w-full bg-green-500 grid grid-cols-12 text-white font-bold text-3xl pb-2 pt-3">
         <div className="col-span-2 text-center">
-            <button className="material-symbols-outlined -mt-1" 
+            <button className="material-symbols-outlined -mt-1 hover:cursor-pointer" 
                     onClick={onCalendarClick}>
                 calendar_today
             </button>
         </div>
 
         <div className="col-span-1 text-right">
-            <button className="material-symbols-outlined -mt-1 " 
+            <button className="material-symbols-outlined -mt-1 hover:cursor-pointer" 
                     onClick={() => updateDateByDays(-1)}>
                 arrow_back_ios
             </button>
@@ -44,7 +44,7 @@ function DatePicker({onCalendarClick, onAddClick, onDateUpdate}: DatePickerProps
         </div>
 
         <div className="col-span-1 text-left">
-            <button className="material-symbols-outlined -mt-1 disabled:opacity-60 transition duration-300"
+            <button className="material-symbols-outlined -mt-1 disabled:opacity-60 transition duration-300 hover:cursor-pointer disabled:cursor-not-allowed"
                     disabled={currentDate.toDateString() == (new Date()).toDateString()}
                     onClick={() => updateDateByDays(1)}>
                 arrow_forward_ios
@@ -52,7 +52,7 @@ function DatePicker({onCalendarClick, onAddClick, onDateUpdate}: DatePickerProps
         </div>
 
         <div className="col-span-2 text-center">
-            <button className="material-symbols-outlined -mt-1"
+            <button className="material-symbols-outlined -mt-1 hover:cursor-pointer"
                     onClick={onAddClick}>
                 add_circle
             </button>
