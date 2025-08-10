@@ -10,10 +10,11 @@ type MacrosProps = {
 function Macros({currentDate, meals, goals}:MacrosProps) {
     const calGoal = goals?.find((goal) => goal.type === 'calories');
 
+    {/* TODO: If there's no meals or no goal we need to make another display to say no meals logged for that day */}
     return <>
         <CaloriesGraph calGoal={calGoal} meals={meals} />
 
-        <div className='bg-white shadow-sm rounded-3xl px-4 py-2'>
+        <div className='bg-white shadow-sm rounded-3xl px-4 py-2 mt-28'>
             <p>{currentDate.toDateString()}</p>
             {meals.map((meal, i) => <p key={i}>{meal.name}, cal:{meal.calories}, protein:{meal.protein}g, fat:{meal.fat}g, carbs:{meal.carbs}g</p>)}
         </div>

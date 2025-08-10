@@ -1,19 +1,25 @@
 import { useEffect, useState } from 'react'
 import DatePicker from "../components/DatePicker"
 import FooterMenu from "../components/FooterMenu"
-import type { Goal, Meal } from '../types/types';
+import type { Goal, Meal, Day } from '../types/types';
 import MacrosPage from './Macros';
 
 function App() {
   const [selectedTab, setSelectedTab] = useState('macros');
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  // temp while we don't have firebase setup
+  // temp while we don't have Supabase setup
   const [meals, setMeals] = useState<Meal[]>([
     {name: "meal1", calories: 180, fat: 9, protein: 12, carbs: 5},
     {name: "meal2", calories: 150, fat: 5, protein: 6, carbs: 8},
     {name: "meal3", calories: 320, fat: 10, protein: 15, carbs: 10},
   ]);
+
+  // TODO: Use days for the meals instead, select the day depending on the selected day
+  const [days, setDays] = useState<Day[]>([]);
+  
+
+
 
   const [goals, setGoals] = useState<Goal[]>([
     {type: 'protein', comparator: 'above', target: 160},

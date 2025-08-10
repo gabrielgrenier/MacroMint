@@ -10,12 +10,17 @@ type CaloriesGraphProps = {
 function CaloriesGraph({calGoal, meals}: CaloriesGraphProps) {
     const totalCaloriesEaten = meals.reduce((sum, meal) => sum + meal.calories, 0);
     const graphHeight = 300;
-    const caloriesDivRef = useRef<HTMLDivElement>(null); // One ref, we only render one of the two div
-    const [negativeMargin, setNegativeMargin] = useState(0);
+    const caloriesDivRef = useRef<HTMLDivElement>(null); // We only need one ref since we only display one div at a time, but would the ref break if we switch days?
+    const [caloriesDivMargins, setCaloriesDivMargins] = useState<[number, number]>([0, 0]);
 
     useEffect(() => {
         if(caloriesDivRef.current){
-            setNegativeMargin(-((graphHeight + caloriesDivRef.current.clientHeight)/2));
+            setCaloriesDivMargins(
+                [
+                    -((graphHeight + caloriesDivRef.current.clientHeight)/2), 
+                    caloriesDivRef.current.clientHeight
+                ]
+            );
         }
     }, []);
 
@@ -31,7 +36,6 @@ function CaloriesGraph({calGoal, meals}: CaloriesGraphProps) {
     }
 
     return <>
-        {/* TODO: remove the animation on this graph*/}
         <ResponsiveContainer width="100%" height={graphHeight}>
             <PieChart style={{outline: 'none'}} >
                 <Pie dataKey="value" 
@@ -44,16 +48,20 @@ function CaloriesGraph({calGoal, meals}: CaloriesGraphProps) {
         </ResponsiveContainer>
 
         {/* If we have a calories goal, we should display it in the middle of the circle with the total / goal*/}
-        {calGoal && <div className="text-center text-4xl" style={{marginTop: negativeMargin, marginBottom: 180}} ref={caloriesDivRef}> {/* TODO: Calculate the right bottom margin using the negative height*/}
-            <p>{totalCaloriesEaten}</p>
-            <div className="h-1 w-24 bg-green-400 mx-auto"/>
-            <p>{calGoal.target}</p>
-            <p className="text-lg text-gray-400 -mt-1">calories</p> {/* TODO: Move the <p> to another div, and add the ref on the sub div for the fraction */}
+        {calGoal && <div className="text-center text-4xl" style={{marginTop: caloriesDivMargins[0], marginBottom: caloriesDivMargins[1]}}>
+            <div ref={caloriesDivRef}>
+                <p>{totalCaloriesEaten}</p>
+                <div className="h-1 w-24 bg-green-400 mx-auto"/>
+                <p>{calGoal.target}</p>
+            </div>
+            <p className="text-lg text-gray-400 -mt-1">calories</p>
         </div>}
 
         {/* If we don't have a calories goal, we should only display the total calories amount */}
-        {!calGoal && <div className="text-center text-4xl" style={{marginTop: negativeMargin, marginBottom: 180}} ref={caloriesDivRef}> 
-            <p>{totalCaloriesEaten}</p>
+        {!calGoal && <div className="text-center text-4xl" style={{marginTop: caloriesDivMargins[0], marginBottom: caloriesDivMargins[1]}}> 
+            <div ref={caloriesDivRef}>
+                <p>{totalCaloriesEaten}</p>
+            </div>
             <p className="text-lg text-gray-400 -mt-1">calories</p>
         </div>}
     </>

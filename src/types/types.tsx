@@ -7,6 +7,10 @@ export type Meal = {
     carbs:number;
     fat:number;
 }
+export type Day = {
+    date: Date;
+    meals: Meal[];
+}
 
 export type GoalType = 'protein' | 'calories' | 'fat' | 'carbs';
 export type GoalComparator = 'above' | 'under';
