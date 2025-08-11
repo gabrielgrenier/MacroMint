@@ -12,6 +12,7 @@ function Macros({currentDate, meals, goals}:MacrosProps) {
 
     {/* TODO: If there's no meals or no goal we need to make another display to say no meals logged for that day */}
     return <>
+        {/* TODO: If there's no meals, we should not display the graph and goals*/}
         <CaloriesGraph calGoal={calGoal} meals={meals} />
 
         <div className='bg-white shadow-sm rounded-3xl px-4 py-2 mt-28'>

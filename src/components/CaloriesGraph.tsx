@@ -47,6 +47,7 @@ function CaloriesGraph({calGoal, meals}: CaloriesGraphProps) {
             </PieChart>
         </ResponsiveContainer>
 
+        {/* TODO: This jumps because the margin is calculated next frame, make sure we calculate the margin first, but this might be pointless also*/}
         {/* If we have a calories goal, we should display it in the middle of the circle with the total / goal*/}
         {calGoal && <div className="text-center text-4xl" style={{marginTop: caloriesDivMargins[0], marginBottom: caloriesDivMargins[1]}}>
             <div ref={caloriesDivRef}>
